@@ -20,3 +20,106 @@
         width: 100%;
     }
 }
+
+.help-button{
+    height: 3rem;
+    width: 3rem;
+    &.MuiButtonBase-root{
+        margin-right: 1rem;
+    } 
+    & > span{
+        & > svg{
+            width: 2.5rem;
+            height: 2.5rem;
+            color: $orange;
+        }
+    }
+}
+
+.log-button{
+    &.MuiButton-root{
+        min-width: 150px;
+        background-color: $orange;
+        color: $white;
+
+        &.logged{
+            background-color: $violet;
+        }
+
+    }
+}
+
+.text-field{
+    width: 70%;
+
+    & > .MuiFormLabel-root{
+
+        &.Mui-focused{
+            color: $orange;
+        }
+    }
+
+    & > .MuiInput-underline{
+        &.Mui-focused::after{
+            border-bottom:2px solid $orange;
+        }
+    }
+}
+
+.option-picker{
+    margin-top: 1rem;
+    width: 70%;
+
+    & > p{
+        color: $orange;
+        font-weight: bold;
+        font-family: $def-font;
+        font-size: 0.8rem;
+    }
+
+    & > .options{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0.7rem;
+
+        height: 110px;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none; 
+
+        margin-bottom: 1rem;
+
+        & > .bread-crumbs{
+            background-color: $violet;
+            font-family: $def-font;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            border-radius: 20px;
+            color: $white;
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, .2);
+            margin: 2px;
+        
+            cursor: pointer;
+            &.selected{
+                background-color: $orange;
+                box-shadow: none;
+                cursor: default;
+            }
+        }
+        & > p{
+            width: 100%;
+            color: $black50;
+            font-size: 0.9rem;
+            font-family: $def-font;
+            text-align: center;
+        }
+    }
+
+}
+
+.options::-webkit-scrollbar{
+    display: none;
+}

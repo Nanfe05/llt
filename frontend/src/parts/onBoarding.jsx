@@ -1,31 +1,33 @@
-import Modal from '@material-ui/core/Modal';
 import {connect} from 'react-redux';
 import {switchOnBoarding}from '../store/actions';
-import Button from '@material-ui/core/Button';
+import { AutoRotatingCarousel, Slide } from 'material-auto-rotating-carousel';
 
 function OnBoarding({onBoarding,switchOnBoarding}){
     return(
-        <Modal
+        <AutoRotatingCarousel
+        label='SKIP'
         open={onBoarding}
+        interval={6000}
         onClose={switchOnBoarding}
-        className='onBoarding'
+        onStart={switchOnBoarding}
+        landscape={true}
+        mobile={false}
         >
-                <div className='paper'>
-                    <div className='header'>
-                        Welcome to <span> Long-lasting Teams</span>
-                    </div>
-                    <div className="content">
-                        <p>
-                            lsjkdfla
-                        </p>
-                    </div>
-                    <div className='footer'>
-                        <Button onClick={switchOnBoarding}>
-                            SKIP
-                        </Button>
-                    </div>
-                </div>
-        </Modal>
+            <Slide
+            mediaBackgroundStyle={{backgroundColor: '#DB9D47'}}
+            style={{backgroundColor: '#DB9D47'}}
+            title="Welcome"
+            subtitle="lafdjslk"
+            />
+            <Slide
+            title="Other1"
+            subtitle="lafdjslk"
+            />
+            <Slide
+            title="Other2"
+            subtitle="lafdjslk"
+            />
+        </AutoRotatingCarousel>
     );
 }
 
