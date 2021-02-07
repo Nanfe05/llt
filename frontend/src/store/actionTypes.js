@@ -1,0 +1,2 @@
+export const SWITCH_ONBOARDING = 'SWITCH_ONBOARDING';
+export const SET_USER = 'SET_USER';
