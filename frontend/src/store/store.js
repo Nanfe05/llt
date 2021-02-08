@@ -18,14 +18,20 @@ const initialState = {
     errors:null,
     notifications:null,
     globalLoading:false,
-    logUser:{name:null,email:null,id:null}
+    logUser:{name:null,email:null,id:null},
+    team:null,
+    teamModal:false,
 };
 
 
 const store = (state = initialState, action)=>{
     switch(action.type){
+        case actionTypes.SWITCH_TEAM_MODAL:
+            return {...state, teamModal: !state.teamModal};
+        case actionTypes.SET_TEAM:
+            return {...state,team: action.value};
         case actionTypes.SET_LOG_USER:
-            return {...state, logUser:{name:action.value.name,email:action.value.email}};
+            return {...state, logUser:{name:action.value.name,email:action.value.email,id:action.value.id}};
         case actionTypes.SET_NOTIFICATIONS:
             return {...state, notifications: action.value};
         case actionTypes.SET_ERRORS:

@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 
 
 export const switchOnBoarding   = () =>({
-    type: actionTypes.SWITCH_ONBOARDING
+    type: actionTypes.SWITCH_ONBOARDING,
 });
 
 export const switchInfoModal   = () =>({
@@ -71,8 +71,19 @@ export const set_log_user=(user)=>{
     return ({
     type: actionTypes.SET_LOG_USER,
     value:{
-        name:user.displayName,
-        email:user.email,
-        id:user.uid
+        name:user.displayName ,
+        email:user.email ,
+        id:user.uid 
     }
 })};
+
+export const set_team=(value)=>{
+    return({
+        type:actionTypes.SET_TEAM,
+        value:value
+    })
+}
+
+export const switch_team_modal=()=>({
+    type: actionTypes.SWITCH_TEAM_MODAL
+});

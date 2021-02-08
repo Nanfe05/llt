@@ -7,7 +7,8 @@ import Stamp from '../components/stamp';
 function Resume({user,company,cP,uP,response}){
     return(
         <div className='resume'>
-            {user && company && cP.length>0 && uP.length>0 ? 
+            { user && company && cP.length>0 && uP.length>0 
+            ? 
             <Paper className="paper">
                 {response &&
                     <Stamp userName={user} companyName={company} response={response}/>

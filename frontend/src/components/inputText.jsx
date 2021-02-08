@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 
-function InputText ({label,onChange,setState, unset, setProfiles,reset,setLoading}){
+function InputText ({label,onChange,setState, unset, setProfiles,reset,setLoading,id,setErrors}){
     const [value,setValue] = useState('');
     return(
-        <TextField required id="standard-required" value={value} label={label} onChange={async(value)=>{
+        <TextField id={id} required value={value} label={label} onChange={async(value)=>{
             setLoading();
             reset();
             unset('');
@@ -12,8 +12,10 @@ function InputText ({label,onChange,setState, unset, setProfiles,reset,setLoadin
             setValue(value.target.value);
             
             const companies = await onChange(value.target.value);
-            
-            if(value.target.value !== ''){
+
+            if(companies?.type === 'error'){
+                setErrors('Error with torre\'s API')
+            }else if(value.target.value !== ''){
                 setState(companies.names);
                 setProfiles(companies.all)
             }else{

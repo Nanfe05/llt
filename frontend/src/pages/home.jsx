@@ -1,4 +1,3 @@
-import {useEffect} from 'react';
 import Header from '../parts/header';
 import Footer from '../parts/footer';
 import OnBoarding from '../parts/onBoarding';
@@ -7,15 +6,18 @@ import Resume from '../parts/resume';
 import GlobalLoading from '../parts/globalLoding'
 import GlobalErrors from '../parts/globalErrors';
 import GlobalNotifications from '../parts/globalNotifications';
-import {CheckUser} from '../services/firebase';
+import {CheckUser,GetDB} from '../services/firebase';
 import {connect} from 'react-redux';
-import {set_log_user,set_notifications} from '../store/actions';
+import {set_log_user,set_team} from '../store/actions';
 
-const Home = ({set_log_user,set_notifications})=>{
 
-    useEffect(()=>{
-        CheckUser(set_log_user,set_notifications);
-    },[set_log_user,set_notifications]);
+const Home = ({set_log_user,user,set_team})=>{
+
+    GetDB(user.id,set_team);
+    if(!user.id){
+        CheckUser(set_log_user);
+    }
+   
 
     return(
         <>
@@ -35,4 +37,8 @@ const Home = ({set_log_user,set_notifications})=>{
     );
 };
 
-export default connect(null,{set_log_user,set_notifications})(Home);
+const mapStateToProps=state=>({
+    user: state.logUser,
+});
+
+export default connect(mapStateToProps,{set_log_user,set_team})(Home);

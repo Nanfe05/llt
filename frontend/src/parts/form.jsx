@@ -13,7 +13,8 @@ import {
     setServerResponse,
     reset_analysis,
     set_globalLoading,
-    set_errors
+    set_errors,
+    
 } from '../store/actions';
 import SubmitButton from '../components/submit'
 
@@ -31,7 +32,8 @@ function Form ({
     setServerResponse,
     reset_analysis,
     set_globalLoading,
-    set_errors
+    set_errors,
+    
 }){
     const [usersLoading, setUsersLoading] = useState(false);
     const [companiesLoading, setCompaniesLoading] = useState(false);
@@ -41,9 +43,9 @@ function Form ({
         <div className='form'>
             <Paper className="paper">
                     <p>Select a company and a User:</p>
-                    <InputText label={'Company Name'} onChange={getCompanies} setState={setCompanies} unset={setCompany} setProfiles={setCompaniesProfiles} reset={reset_analysis} setLoading={setCompaniesLoading}/>
+                    <InputText id={'124'} label={'Company Name'} onChange={getCompanies} setState={setCompanies} unset={setCompany} setProfiles={setCompaniesProfiles} reset={reset_analysis} setLoading={setCompaniesLoading} setErrors={set_errors}/>
                     <OptionPicker label={'Choose a Company'} options={companies} setState={setCompany} state={company} reset={reset_analysis} loading={companiesLoading}/>
-                    <InputText label={'User Name'} onChange={getUsers} setState={setUsers} unset={setUser} setProfiles={setUserProfiles} reset={reset_analysis} setLoading={setUsersLoading}/>
+                    <InputText id={'123'} label={'User Name'} onChange={getUsers} setState={setUsers} unset={setUser} setProfiles={setUserProfiles} reset={reset_analysis} setLoading={setUsersLoading} setErrors={set_errors}/>
                     <OptionPicker label={'Choose a User'} options={users} setState={setUser} state={user} reset={reset_analysis} loading={usersLoading}/>
                     <SubmitButton company={company} user={user} func={analize} setResponse={setServerResponse} setLoading={set_globalLoading} setErrors={set_errors}/>
             </Paper>            
@@ -70,5 +72,6 @@ export default connect(
         setServerResponse,
         reset_analysis,
         set_globalLoading,
-        set_errors
+        set_errors,
+        
     })(Form);

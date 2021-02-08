@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 
 require('firebase/auth');
+require('firebase/database');
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -27,15 +28,18 @@ export const Login = (setUser,setError,setNotification) =>{
 
 };
 
-export const CheckUser=(setUser,setNotification)=>{
+export const CheckUser=(setUser)=>{
     firebase.auth().onAuthStateChanged((user)=>{
-        setUser(user);
+        if(user){
+            setUser(user);
+        }
     });
 
 };
 
-export const Logout=(setUser,setError,setNotification)=>{
+export const Logout=(setUser,setError,setNotification,set_team)=>{
     firebase.auth().signOut().then(()=>{
+        set_team(null);
         setNotification('Logout successfully!');
         setUser({name:null,email:null,id:null});
     }).catch((error)=>{
@@ -43,3 +47,27 @@ export const Logout=(setUser,setError,setNotification)=>{
         setError(errorMessage);
     });
 };
+
+const db= firebase.database();
+const usersDB = db.ref().child('users');
+
+
+export const GetDB=(userID,setState)=>{
+    usersDB.child(`${userID}`).on('value',(snap)=>{
+        setState(snap.val());
+    });
+}
+
+export const AddToDB=(userID,obj,set_errors,set_notifications)=>{
+    try{
+        usersDB.child(`${userID}`).push(obj);
+        set_notifications('Analysis saved');
+    }catch(e){
+        set_errors('Can\'t save your analysis at this time');
+    }
+};
+
+export const RemoveFromDB=()=>{
+
+};
+
