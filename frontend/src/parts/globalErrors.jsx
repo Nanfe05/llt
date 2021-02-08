@@ -12,7 +12,7 @@ function GlobalErrors ({error,set_errors}){
           horizontal: 'left',
         }}
         open={error ? true : false}
-        autoHideDuration={30000}
+        autoHideDuration={6000}
         onClose={()=>{
             set_errors(null);
         }}

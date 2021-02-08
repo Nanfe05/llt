@@ -16,12 +16,18 @@ const initialState = {
     userSelected:null,
     serverResponse:null,
     errors:null,
+    notifications:null,
     globalLoading:false,
+    logUser:{name:null,email:null,id:null}
 };
 
 
 const store = (state = initialState, action)=>{
     switch(action.type){
+        case actionTypes.SET_LOG_USER:
+            return {...state, logUser:{name:action.value.name,email:action.value.email}};
+        case actionTypes.SET_NOTIFICATIONS:
+            return {...state, notifications: action.value};
         case actionTypes.SET_ERRORS:
             return {...state, errors: action.value};
         case actionTypes.SET_GLOBAL_LOADING:

@@ -3,6 +3,8 @@ import Info from './info';
 import Help from './help';
 import Log from './log';
 
+
+
 function Header (){
     return(<div className='header'>
         <div className='help-buttons-group'>

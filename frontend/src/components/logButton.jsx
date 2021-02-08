@@ -1,8 +1,8 @@
 import Button from '@material-ui/core/Button';
 
-function LogButton({title,action,logged}){
+function LogButton({title,action,logged,logout}){
     return(
-        <Button onClick={action} className={`log-button ${logged?'logged':''}`}>
+        <Button onClick={logged?logout:action} className={`log-button ${logged?'logged':''}`}>
             {title}
         </Button>
     );

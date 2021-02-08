@@ -1,26 +1,14 @@
 import LogButton from '../components/logButton';
 import {connect} from 'react-redux';
-import {switchLogModal} from '../store/actions';
-import Modal from '@material-ui/core/Modal';
+import {Login,Logout} from '../services/firebase';
+import {set_log_user,set_errors,set_notifications} from '../store/actions';
 
-
-function Log ({showModal,switchLogModal}){
+function Log ({logUserName,logUserEmail,set_log_user,set_errors,set_notifications}){
 
     return(
         <>
-            <Modal 
-            open={showModal}
-            onClose={switchLogModal}
-            className='modal'
-            >
-                <div className='paper'>
-                   <div className='header'>Choose the option most suit you:</div>
-                   <div className='content'></div>
-                   <div className='footer'></div>
-                </div>
-            </Modal>
             <div className='log-button-container'>
-                <LogButton title={'Login'}  action={switchLogModal} logged={false}/>
+                <LogButton title={logUserName || logUserEmail? 'Logout':'Login'}  logout={()=>{Logout(set_log_user,set_errors,set_notifications);}} action={()=>{Login(set_log_user,set_errors,set_notifications);}} logged={logUserName || logUserEmail}/>
             </div>
         </>
     );
@@ -28,8 +16,9 @@ function Log ({showModal,switchLogModal}){
 
 
 const mapStateToProps = state =>({
-    showModal: state.logModal
+    logUserName:state.logUser.name,
+    logUserEmail:state.logUser.email
 });
 
 
-export default connect(mapStateToProps,{switchLogModal})(Log);
+export default connect(mapStateToProps,{set_log_user,set_errors,set_notifications})(Log);

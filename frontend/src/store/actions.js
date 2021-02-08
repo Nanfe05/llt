@@ -61,3 +61,18 @@ export const set_errors= (errors)=>({
     type: actionTypes.SET_ERRORS,
     value: errors
 });
+
+export const set_notifications= (notifications)=>({
+    type: actionTypes.SET_NOTIFICATIONS,
+    value: notifications
+});
+
+export const set_log_user=(user)=>{
+    return ({
+    type: actionTypes.SET_LOG_USER,
+    value:{
+        name:user.displayName,
+        email:user.email,
+        id:user.uid
+    }
+})};
