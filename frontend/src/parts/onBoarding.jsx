@@ -36,7 +36,7 @@ function OnBoarding({onBoarding,switchOnBoarding}){
             mediaBackgroundStyle={{backgroundColor: 'white'}}
             style={{backgroundColor: '#DB9D47'}}
             title="3. Train AI"
-            subtitle="Train the AI algorithm (up to 50 members of the company will be evaluated againts the personal traits of the user profile chosed)"
+            subtitle="Train the AI algorithm (up to 50 members of the company will be evaluated against  the personal traits of the user profile chosen)"
             />
              <Slide
              media={<img src={step4} alt='step4' className='steps-img'/>}

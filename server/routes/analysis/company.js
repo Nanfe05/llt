@@ -31,6 +31,28 @@ const personalityTraits = (pt) =>{
     return general;
 };
 
+const searchUserPersonalityTraits = async(userName)=>{
+    try{
+        const person = await axios.get(`https://torre.bio/api/bios/${userName}`);
+
+        if(person && person.data && person.data.personalityTraitsResults){
+            const chars = personalityTraits(person.data.personalityTraitsResults);
+            console.log(chars);
+            if(chars){
+                let arr = Object.values(chars).map(el=>el);
+                return arr;
+            }else{
+                return[];
+            }
+        }else{
+            return[];
+        }
+    }catch(e){
+        console.error('Error looking each person',e);
+        return [];
+    }
+};
+
 const searchEachPerson = async(userName,companyName)=>{
     try{
         const person = await axios.get(`https://torre.bio/api/bios/${userName}`);
@@ -91,30 +113,58 @@ const searchEachPerson = async(userName,companyName)=>{
 router.post('/',async (req,res)=>{
 let dataCollection ={};
 try{
-    const companyName= req.body.companyName.toLowerCase();
-    const size = req.body.size;
+    const user = await searchUserPersonalityTraits(req.body.userName);
+    
+    if(user && user.length > 0){
+        const companyName= req.body.companyName.toLowerCase();
+        const size = 50;
 
-    dataCollection.name = companyName;
-    dataCollection.data = [];
+        dataCollection.name = companyName;
+        dataCollection.data = [];
 
-    const companyInfo = await searchCompany(companyName,size);
-    if(companyInfo.length > 0){
-        for(const employee of companyInfo){
-            const userName = employee.username;
-            const user = await searchEachPerson(userName,companyName);
-            if(Object.keys(user).length > 1){
-                dataCollection.data.push(user);
+        const companyInfo = await searchCompany(companyName,size);
+        if(companyInfo.length > 0){
+            for(const employee of companyInfo){
+                const userName = employee.username;
+                const user = await searchEachPerson(userName,companyName);
+                if(Object.keys(user).length > 1){
+                    dataCollection.data.push(user);
+                }
             }
+            if(dataCollection.data && dataCollection.data.length <= 0){
+                res.send({
+                    type: 'error',
+                    msg:'No enought info, try another company'
+                })
+            }else{
+                const prediction = await aiCompany(dataCollection,user);
+                if(prediction){
+                    res.send({prediction, pts: user});
+                }else{
+                    res.send({
+                        type: 'error',
+                        msg:'No enought info, try another company'
+                    })
+                }
+            }
+        }else{
+            res.send({
+                type: 'error',
+                msg:'No employees or company'
+            });
         }
-        aiCompany(dataCollection);
-        res.send(dataCollection);
+
     }else{
-        res.send('no employees or company');
+        res.send({
+            type: 'error',
+            msg: 'Please select a user with a complete profile, the one you selected does\'nt have personality traits '
+        });
     }
 
 
 }catch(e){
     console.error(e);
+    res.send('unknown error');
 }
 });
 
