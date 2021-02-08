@@ -14,12 +14,18 @@ const initialState = {
     userProfiles:[],
     companiesProfiles:[],
     userSelected:null,
-    serverResponse:null
+    serverResponse:null,
+    errors:null,
+    globalLoading:false,
 };
 
 
 const store = (state = initialState, action)=>{
     switch(action.type){
+        case actionTypes.SET_ERRORS:
+            return {...state, errors: action.value};
+        case actionTypes.SET_GLOBAL_LOADING:
+            return {...state,globalLoading: !state.globalLoading};
         case actionTypes.SET_RESET_ANALYSIS:
             return {...state,user: false,serverResponse:null};
         case actionTypes.SET_SERVER_RESPONSE:

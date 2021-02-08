@@ -1,7 +1,6 @@
 import Stat from '../components/stat';
 
 function Stats({response}){
-    console.log(response);
     return(
         <div className='stats'>
             <p>User Personal Traits:</p>

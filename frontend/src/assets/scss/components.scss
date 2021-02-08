@@ -191,3 +191,9 @@
         max-width: 300px;
     }
 }
+
+.loading{
+    &.MuiCircularProgress-colorPrimary{
+        color: $orange;
+    }
+}

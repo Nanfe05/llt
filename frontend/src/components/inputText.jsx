@@ -1,10 +1,11 @@
 import {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 
-function InputText ({label,onChange,setState, unset, setProfiles,reset}){
+function InputText ({label,onChange,setState, unset, setProfiles,reset,setLoading}){
     const [value,setValue] = useState('');
     return(
         <TextField required id="standard-required" value={value} label={label} onChange={async(value)=>{
+            setLoading();
             reset();
             unset('');
             setProfiles([]);
@@ -19,6 +20,7 @@ function InputText ({label,onChange,setState, unset, setProfiles,reset}){
                 setState([]);
                 setProfiles([]);
             }
+            setLoading();
             
         }} className="text-field"/>
     );

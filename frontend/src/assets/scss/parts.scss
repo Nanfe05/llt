@@ -91,7 +91,8 @@
             justify-content: center;
             align-items: center;
             height: 10%;
-            background-color: $nya;
+            color: $black;
+            background-color: $white;
             & > .MuiButton-root{
                 font-weight: bold;
                 color: $black50;
@@ -184,8 +185,8 @@
         border-radius: 50%;
         background-color: $black50;
         & > svg{
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
         }
     }
 
@@ -231,5 +232,11 @@
     & > .stats-info{
         display: flex;
         flex-direction: column;
+    }
+}
+
+.error-message{
+    & > .MuiSnackbarContent-root{
+        background-color: rgb(204, 1, 1);
     }
 }

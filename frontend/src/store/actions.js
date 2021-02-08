@@ -51,3 +51,13 @@ export const setServerResponse = (response) =>({
 export const reset_analysis =()=>({
     type: actionTypes.SET_RESET_ANALYSIS
 });
+
+export const set_globalLoading =()=>({
+    type: actionTypes.SET_GLOBAL_LOADING
+});
+
+
+export const set_errors= (errors)=>({
+    type: actionTypes.SET_ERRORS,
+    value: errors
+});

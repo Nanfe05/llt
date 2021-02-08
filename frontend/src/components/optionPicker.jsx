@@ -1,9 +1,13 @@
-function OptionPicker({label,options,state, setState,reset}){
+import Loading from '../components/loading';
+
+function OptionPicker({label,options,state, setState,reset,loading}){
     return(
         <div className='option-picker'>
             <p>{label}</p>
             <div className='options'>
-                {options && options.length > 0 ? options.map((el,i)=>{
+                {loading ?
+                <Loading/>
+                :options && options.length > 0 ? options.map((el,i)=>{
                     return(
                         <div key={`${label}-${i}-${Date.now()}`} className={`bread-crumbs ${state === el ? 'selected':''}`} onClick={()=>{
                             reset();
