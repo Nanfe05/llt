@@ -37,7 +37,6 @@ const searchUserPersonalityTraits = async(userName)=>{
 
         if(person && person.data && person.data.personalityTraitsResults){
             const chars = personalityTraits(person.data.personalityTraitsResults);
-            console.log(chars);
             if(chars){
                 let arr = Object.values(chars).map(el=>el);
                 return arr;
