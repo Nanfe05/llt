@@ -10,7 +10,7 @@ export const getCompanies = async (name)=>{
         if(companies && companies.data){
             names = companies.data.map((el)=>el.name);
         }
-        return names;
+        return {names,all:companies.data};
     }catch(e){
         return {type:'error',msg:'error getting companies'};
     }
@@ -23,7 +23,21 @@ export const getUsers = async (name)=>{
         if(users && users.data && users.data.results){
             names = users.data.results.map((el)=>el.username);
         }
-        return names;
+        return {names, all:users.data.results};
+    }catch(e){
+        return {type:'error',msg:'error getting users'};
+    }
+};
+
+
+export const analize = async (company,user) =>{
+    try{
+        const result = await axios.post('/api/analysis/',{
+            companyName: company,
+            userName: user
+        });
+
+        return result;
     }catch(e){
         return {type:'error',msg:'error getting users'};
     }

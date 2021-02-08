@@ -32,3 +32,22 @@ export const setUser = (user)=>({
     type: actionTypes.SET_USER,
     value: user
 });
+
+export const setUserProfiles = (users) =>({
+    type: actionTypes.SET_USER_PROFILES,
+    value: users
+});
+
+export const setCompaniesProfiles = (companies) =>({
+    type: actionTypes.SET_COMPANIES_PROFILES,
+    value: companies
+});
+
+export const setServerResponse = (response) =>({
+    type: actionTypes.SET_SERVER_RESPONSE,
+    value:response
+});
+
+export const reset_analysis =()=>({
+    type: actionTypes.SET_RESET_ANALYSIS
+});

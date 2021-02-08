@@ -11,12 +11,23 @@ const initialState = {
     companies:[],
     companySelected:null,
     users:[],
-    userSelected:null
+    userProfiles:[],
+    companiesProfiles:[],
+    userSelected:null,
+    serverResponse:null
 };
 
 
 const store = (state = initialState, action)=>{
     switch(action.type){
+        case actionTypes.SET_RESET_ANALYSIS:
+            return {...state,user: false,serverResponse:null};
+        case actionTypes.SET_SERVER_RESPONSE:
+            return {...state, serverResponse: action.value};
+        case actionTypes.SET_COMPANIES_PROFILES:
+            return {...state, companiesProfiles:action.value}
+        case actionTypes.SET_USER_PROFILES:
+            return {...state, userProfiles:action.value};
         case actionTypes.SWITCH_ONBOARDING:
             return {...state,onBoarding:!state.onBoarding};
         case actionTypes.SWITCH_INFOMODAL:

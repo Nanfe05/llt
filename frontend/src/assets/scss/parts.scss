@@ -111,6 +111,29 @@
 
 }
 
+.resume{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    min-width: 300px;
+    width: 60%;
+
+    & > p{
+        font-family: $def-font;
+        color: $black50;
+    }
+
+    & > .paper{
+        & > p{
+            font-size: 1.2rem;
+            width: 90%;
+            text-align: left;
+        }
+    }
+}
+
 .paper{
     display: flex;
     flex-direction: column;
@@ -118,12 +141,95 @@
     align-items: center;
 
     height: 90%;
-    width: 80%;
+    width: 90%;
+
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
 
     & > p{
         font-family: $def-font;
         font-weight: bold;
         color: $orange;
         padding: 1rem 0;
+    }
+}
+.paper::-webkit-scrollbar{
+    display: none;
+}
+
+.description{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 350px;
+    font-family: $def-font;
+    text-align: right;
+    margin: 1rem;
+
+    &.flip{
+        flex-direction: row-reverse;
+        text-align: left;
+    }
+
+    & > .avatar-holder{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $white50;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: $black50;
+        & > svg{
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    & > .text-description{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100%;
+
+        & > .name{
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: $orange;
+
+        }
+        & > .subtitle{
+        font-size: 1.2rem;
+        }
+        & > .small{
+        font-style: italic;
+        }
+    }
+
+    & > .img{
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}
+
+.stats{
+    display: flex;
+    flex-direction: column;
+    font-family: $def-font;
+    width: 90%;
+
+    & > p{
+        font-weight: bold;
+        margin: 0.3rem 0;
+    }
+
+    & > .stats-info{
+        display: flex;
+        flex-direction: column;
     }
 }

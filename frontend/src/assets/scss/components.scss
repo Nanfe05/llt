@@ -123,3 +123,71 @@
 .options::-webkit-scrollbar{
     display: none;
 }
+
+.submit-button{
+    &.MuiButton-contained{
+        color: $white;
+        background-color: $orange;
+    }
+    width: 70%;
+}
+
+.stat{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0.15rem 0 0.15rem 1rem;
+
+}
+
+.linear-progress{
+    width: 250px;
+    &.MuiLinearProgress-colorPrimary{
+        background-color: $orange30;
+        
+        & > .MuiLinearProgress-barColorPrimary{
+            background-color: $orange;
+        }
+    }
+}
+
+.quality-stamp{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+
+    font-family: $def-font;
+    font-size: 1rem;
+    text-align: center;
+    color: $orange;
+    
+    & > .stamp{
+        position: relative;
+        & > img{
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+            & > .label-stamp{
+                position: absolute;
+            }
+        }
+        & > .label-stamp{
+            width: 100px;
+            position: absolute;
+            top: 40px;
+            left: 0px;
+            font-weight: bold;
+            color: $yellow;
+        }
+    }
+
+
+
+    & > span{
+        max-width: 300px;
+    }
+}
