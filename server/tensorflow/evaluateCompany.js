@@ -3,28 +3,21 @@ const { type } = require('os');
 
 
 const createModel=()=>{
-    // Create a sequential model
   const model = tf.sequential(); 
   
-  // Add a single input layer
   model.add(tf.layers.dense({inputShape: [7], units: 7, useBias: true}));
   model.add(tf.layers.dense({inputShape:[7],units: 20, activation: 'sigmoid',useBias:true}));
   model.add(tf.layers.dense({inputShape:[20],units: 20,useBias:true}));
-  // Add an output layer
   model.add(tf.layers.dense({inputShape:[20],units: 1,useBias:true}));
 
   return model;
 };
 
 const convertToTensor=(data)=>{
-    // Wrapping these calculations in a tidy will dispose any 
-  // intermediate tensors.
   
   return tf.tidy(() => {
-    // Step 1. Shuffle the data    
     tf.util.shuffle(data);
 
-    // Step 2. Convert data to Tensor
     const inputs = data.map(d => [
         d.openness,
         d.honesty,
@@ -38,7 +31,6 @@ const convertToTensor=(data)=>{
     const inputTensor = tf.tensor2d(inputs, [inputs.length, 7]);
     const labelTensor = tf.tensor2d(labels, [labels.length, 1]);
 
-    //Step 3. Normalize the data to the range 0 - 1 using min-max scaling
     const inputMax = inputTensor.max();
     const inputMin = inputTensor.min();  
     const labelMax = labelTensor.max();
@@ -50,7 +42,6 @@ const convertToTensor=(data)=>{
     return {
       inputs: normalizedInputs,
       labels: normalizedLabels,
-      // Return the min/max bounds so we can use them later.
       inputMax,
       inputMin,
       labelMax,
@@ -60,7 +51,6 @@ const convertToTensor=(data)=>{
 };
 
 async function trainModel(model, inputs, labels) {
-    // Prepare the model for training.  
     model.compile({
       optimizer: tf.train.adam(),
       loss: tf.losses.meanSquaredError,
@@ -75,17 +65,14 @@ async function trainModel(model, inputs, labels) {
       epochs,
       shuffle: true,
       callbacks: ()=>{
-          console.log('Training...');
+          console.info('Training...');
       }
     });
   }
 
   const testModel = (model, normalizationData,value) => {
     const {inputMax, inputMin, labelMin, labelMax} = normalizationData;  
-    
-    // Generate predictions for a uniform range of numbers between 0 and 1;
-    // We un-normalize the data by doing the inverse of the min-max scaling 
-    // that we did earlier.
+  
     const preds = tf.tidy(() => {
       const tensorToPred= tf.tensor2d(value,[1,7]);
       const normalizedTensorToPred = tensorToPred.sub(inputMin).div(inputMax.sub(inputMin));
@@ -95,7 +82,6 @@ async function trainModel(model, inputs, labels) {
         .mul(labelMax.sub(labelMin))
         .add(labelMin);
       
-      // Un-normalize the data
       return unNormPred.dataSync();
     });
     return preds;
