@@ -1,3 +1,5 @@
+![](20210208_125043.gif)
+
 # How it was made
 Based on the fact that Torre specializes in the identification of soft skills in addition to hard skills in the processes of searching for profiles for hiring, it was decided to make an application that, based on an artificial intelligence algorithm, allows to identify the match between the soft skills of each user registered as an applicant, and the soft skills of those people who have a long career in the contracting company, providing an estimate of the time that a certain applicant could be linked to the company, based on their interests and personal traits, and those that artificial intelligence recognizes in the base team (the process is measured in days, but the result is shown in months).
 
