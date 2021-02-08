@@ -1,0 +1,257 @@
+.logo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: $title-font;
+    font-size: 3.5rem;
+    color: $orange;
+    min-width: 200px;
+    & > .upper{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    & > .down{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
+    }
+}
+
+.help-button{
+    height: 3rem;
+    width: 3rem;
+    &.MuiButtonBase-root{
+        margin-right: 1rem;
+    } 
+    & > span{
+        & > svg{
+            width: 2.5rem;
+            height: 2.5rem;
+            color: $orange;
+        }
+    }
+}
+
+.log-button{
+    &.MuiButton-root{
+        min-width: 150px;
+        background-color: $orange;
+        color: $white;
+
+        &.logged{
+            background-color: $violet;
+        }
+
+    }
+}
+
+.text-field{
+    width: 70%;
+
+    & > .MuiFormLabel-root{
+
+        &.Mui-focused{
+            color: $orange;
+        }
+    }
+
+    & > .MuiInput-underline{
+        &.Mui-focused::after{
+            border-bottom:2px solid $orange;
+        }
+    }
+}
+
+.option-picker{
+    margin-top: 1rem;
+    width: 70%;
+
+    & > p{
+        color: $orange;
+        font-weight: bold;
+        font-family: $def-font;
+        font-size: 0.8rem;
+    }
+
+    & > .options{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0.7rem;
+
+        height: 110px;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none; 
+
+        margin-bottom: 1rem;
+
+        & > .bread-crumbs{
+            background-color: $violet;
+            font-family: $def-font;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            border-radius: 20px;
+            color: $white;
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, .2);
+            margin: 2px;
+        
+            cursor: pointer;
+            &.selected{
+                background-color: $orange;
+                box-shadow: none;
+                cursor: default;
+            }
+        }
+        & > p{
+            width: 100%;
+            color: $black50;
+            font-size: 0.9rem;
+            font-family: $def-font;
+            text-align: center;
+        }
+    }
+
+}
+
+.options::-webkit-scrollbar{
+    display: none;
+}
+
+.submit-button{
+    &.MuiButton-contained{
+        color: $white;
+        background-color: $orange;
+    }
+    width: 70%;
+}
+
+.stat{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0.15rem 0 0.15rem 1rem;
+
+}
+
+.linear-progress{
+    width: 250px;
+    &.MuiLinearProgress-colorPrimary{
+        background-color: $orange30;
+        
+        & > .MuiLinearProgress-barColorPrimary{
+            background-color: $orange;
+        }
+    }
+}
+
+.quality-stamp{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    position: relative;
+
+    font-family: $def-font;
+    font-size: 1rem;
+    text-align: center;
+    color: $orange;
+    
+    & > .stamp{
+        position: relative;
+        & > img{
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+            & > .label-stamp{
+                position: absolute;
+            }
+        }
+        & > .label-stamp{
+            width: 100px;
+            position: absolute;
+            top: 40px;
+            left: 0px;
+            font-weight: bold;
+            color: $yellow;
+        }
+    }
+
+
+
+    & > span{
+        max-width: 300px;
+    }
+}
+
+.loading{
+    &.MuiCircularProgress-colorPrimary{
+        color: $orange;
+    }
+}
+
+.save-fav{
+    height: 50px;
+    width: 50px;
+
+    
+
+}
+
+.icon-save-fav{
+    &.red{
+        color: rgb(85, 0, 0);
+    }
+}
+
+.myTeam-button{
+    &.color{
+        background-color: $orange;
+        color: $white;
+    }
+}
+
+.team-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    padding: 01rem;
+    border-bottom: 1px solid $black50;
+
+    & > .row{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        & > .title{
+            
+            font-weight: bold;
+            color: $orange;
+        }
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .help-button{
+        height: auto;
+        width: auto;
+        &.MuiButtonBase-root{
+            margin-right: 0;
+        } 
+    }
+    
+  }

@@ -1,4 +1,5 @@
 const tf = require('@tensorflow/tfjs');
+const { type } = require('os');
 
 
 const createModel=()=>{
@@ -100,7 +101,7 @@ async function trainModel(model, inputs, labels) {
     return preds;
   }
 
-const train = async (data)=>{
+const train = async (data,userpts)=>{
     const cleanedData = data.data.map((char)=>({
         openness: char["openness-to-experience"],
         honesty:char["honesty-humility"],
@@ -121,24 +122,15 @@ const train = async (data)=>{
         char.extraversion  &&
         char.days 
         ));
-
-    console.log(cleanedData);
     const model = createModel();
     const tensorData = convertToTensor(cleanedData);
     const {inputs, labels} = tensorData;
 
     await trainModel(model,inputs,labels);
     
-    const pred = testModel(model,tensorData,[4.06,
-        3.63,
-        3.44,
-        3.75,
-        3.88,
-        3.94,
-        3.94]);
+    const pred = testModel(model,tensorData,userpts);
 
-    console.log('Prediction: ',pred);
-   
+    return Object.values(pred)[0];
 };
 
 

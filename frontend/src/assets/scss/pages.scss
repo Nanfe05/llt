@@ -1,0 +1,25 @@
+body{
+    background-color: $peach;
+}
+
+.home{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    & > .content{
+        display: flex;
+        flex: 1 0 auto;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .home{
+        & > .content{
+            display: flex;
+            flex-direction: column;
+            flex: 1 0 auto;
+        }
+    }
+
+}
